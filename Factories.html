@@ -1,0 +1,79 @@
+<html ng-app="demoApp">
+<head>
+    <title>Factories</title>
+    <script src="angular.min.js"></script>
+</head>
+<body>
+    <div>
+<!-- Placeholder for views -->
+        <div ng-view=""></div>
+    </div>
+    
+    <script>
+        //Define a Module
+        var demoApp = angular.modulep('demoApp',[]);
+        //Defining Module Routes
+        demoApp.config(function ($routeProvider) {
+           $routeProvider
+                .when('/view1',
+                    {
+                        controller:'SimpleController',
+                        templateUrl:'View1.html'
+                    })
+                .when('/view2',
+                    {
+                        controller:'SimpleController',
+                        templateUrl:'View2.html'
+                    })
+                    .otherwise({ redirectTo: '/view1' });
+        });
+        
+        //Define a Factory
+        demoApp.factory('simpleFactory', function() {
+           var customers = [
+                {name:'Han Han',city:'ShangHai'},
+                {name:'Lao Luo',city:'BeiJing'},
+                {name:'Dan Wahlin',city:'Arizona'},
+                {name:'Tony Stark',city:'WashingtonDC'}
+            ];
+            
+            var factory = {};
+            this.getCustomers = function() {
+                return customers;
+            };
+            
+            this.postCustomer = function() {
+                
+            };
+            
+            return factory;
+            
+        });
+        
+        var controllers = {};
+        //Define a Controller
+        //有三种方法可以定义一个Controller：下面这一种是扩展性最强的
+        controllers.SimpleController = function($scope,simpleFactory) {
+            $scope.customers = [];
+            
+            init();
+            
+            function init() {
+                $scope.customers = simpleFactory.getCustomers();
+            }
+            
+            $scope.addCustomer = function() {
+              $scope.customers.push(
+                  {
+                      name:$scope.newCustomer.name,
+                      city:$scope.newCustomer.city
+                  
+                  });
+            };
+            
+        };
+        
+        demoApp.controller(controllers);
+    </script>
+</body>
+</html>

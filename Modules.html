@@ -1,0 +1,35 @@
+<html ng-app="demoApp">
+<head>
+    <title>Modules are Containers</title>
+    <script src="angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller="SimpleController">
+        <h3>Creating a Module</h3>
+        <input type="text" ng-model="name" />
+        <br>
+        <ul>
+            <li ng-repeat="cust in customers | filter:name">{{cust.name}} - {{cust.city}}</li>
+        </ul>
+    </div>
+    
+    
+    <script>
+        //Define a Module
+        var demoApp = angular.modulep('demoApp',[]);
+        var controllers = {};
+        //Define a Controller
+        //有三种方法可以定义一个Controller：下面这一种是扩展性最强的
+        controllers.SimpleController = function($scope) {
+            $scope.customers = [
+                {name:'Han Han',city:'ShangHai'},
+                {name:'Lao Luo',city:'BeiJing'},
+                {name:'Dan Wahlin',city:'Arizona'},
+                {name:'Tony Stark',city:'WashingtonDC'}
+            ];
+        };
+        
+        demoApp.controller(controllers);
+    </script>
+</body>
+</html>

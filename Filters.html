@@ -1,0 +1,19 @@
+<html ng-app>
+<head>
+    <title>Filters</title>
+    <script src="angular.min.js"></script>
+</head>
+<body>
+    <div class="container" ng-init="names=[{name:'Han Han',city:'ShangHai'},{name:'Lao Luo',city:'BeiJing'},{name:'Dan Wahlin',city:'Arizona'},{name:'Tony Stark',city:'WashingtonDC'}]">
+        <h3>Looping with the ng-repeat Directive</h3>
+        <input type="text" ng-model="name" />
+        <br>
+        <ul>
+            <!--     下面的也可以，不过后面不可以用大小写过滤      -->
+<!--            <li ng-repeat="personName in names | filter:name | orderBy:'name'">{{personName.name + '-' + personName.city}}</li>-->
+            <li ng-repeat="personName in names | filter:name | orderBy:'name'">{{personName.name | uppercase}} - {{personName.city | lowercase}}</li>
+        </ul>
+    </div>
+    
+</body>
+</html>

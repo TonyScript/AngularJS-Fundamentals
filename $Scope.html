@@ -1,0 +1,29 @@
+<html ng-app>
+<head>
+    <title>$Scope is a ViewModel</title>
+    
+</head>
+<body>
+    <div ng-controller="SimpleController">
+        <h3>Adding a Simple Controller</h3>
+        <input type="text" ng-model="name" />
+        <br>
+        <ul>
+            <li ng-repeat="cust in customers | filter:name">{{cust.name}} - {{cust.city}}</li>
+        </ul>
+    </div>
+    
+    <script src="angular.min.js"></script>
+    <script>
+        function SimpleController($scope) {
+            
+            $scope.customers = [
+                {name:'Han Han',city:'ShangHai'},
+                {name:'Lao Luo',city:'BeiJing'},
+                {name:'Dan Wahlin',city:'Arizona'},
+                {name:'Tony Stark',city:'WashingtonDC'}
+            ];
+        }
+    </script>
+</body>
+</html>
