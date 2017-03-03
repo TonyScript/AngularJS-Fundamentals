@@ -1,2 +1,2 @@
 # AngularJS-Fundamentals
-AngularJS Fundamentals Tutorial
+AngularJS 的基础入门代码，有助于快速上手。
